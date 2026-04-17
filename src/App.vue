@@ -225,7 +225,7 @@ const getApiUrl = () => {
 // Methods
 const fetchJobs = async (reset = false) => {
   if (!searchParams.value.query.trim()) {
-    searchParams.value.query = 'software developer jobs in South Africa';
+    searchParams.value.query = 'General Worker';
   }
 
   if (reset) {
