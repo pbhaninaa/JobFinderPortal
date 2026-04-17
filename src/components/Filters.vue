@@ -1,11 +1,16 @@
 <template>
-  <div class="bg-white rounded-2xl shadow-lg p-6 space-y-6">
-    <div class="flex items-center justify-between">
-      <h3 class="text-lg font-semibold text-gray-900">Filters</h3>
+  <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 space-y-6 sticky top-24">
+    <div class="flex items-center justify-between pb-2 border-b border-gray-200">
+      <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+        <svg class="h-5 w-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+        Filters
+      </h3>
       <button
         v-if="hasActiveFilters"
         @click="clearFilters"
-        class="text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors"
+        class="text-sm text-primary-600 hover:text-primary-700 font-semibold transition-colors underline decoration-2 underline-offset-2"
       >
         Clear All
       </button>
@@ -15,11 +20,11 @@
     <div class="space-y-3">
       <button
         @click="toggleSection('datePosted')"
-        class="w-full flex items-center justify-between text-left"
+        class="w-full flex items-center justify-between text-left py-2 hover:text-primary-600 transition-colors"
       >
-        <span class="text-sm font-medium text-gray-900">Date Posted</span>
+        <span class="text-base font-semibold text-gray-900">Date Posted</span>
         <svg
-          class="h-5 w-5 text-gray-500 transition-transform duration-200"
+          class="h-5 w-5 text-gray-400 transition-transform duration-200"
           :class="{ 'rotate-180': expandedSections.datePosted }"
           fill="none"
           stroke="currentColor"
@@ -29,11 +34,11 @@
         </svg>
       </button>
 
-      <div v-show="expandedSections.datePosted" class="space-y-2 animate-fade-in">
+      <div v-show="expandedSections.datePosted" class="space-y-1.5 animate-fade-in pl-1">
         <label
           v-for="option in dateOptions"
           :key="option.value"
-          class="flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors group"
+          class="flex items-center p-2.5 rounded-lg hover:bg-primary-50 cursor-pointer transition-all duration-150 group"
         >
           <input
             type="radio"
@@ -42,7 +47,7 @@
             @change="handleDateChange"
             class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 cursor-pointer"
           />
-          <span class="ml-3 text-sm text-gray-700 group-hover:text-gray-900">{{ option.label }}</span>
+          <span class="ml-3 text-sm text-gray-700 group-hover:text-gray-900 font-medium">{{ option.label }}</span>
         </label>
       </div>
     </div>
@@ -53,11 +58,11 @@
     <div class="space-y-3">
       <button
         @click="toggleSection('employmentType')"
-        class="w-full flex items-center justify-between text-left"
+        class="w-full flex items-center justify-between text-left py-2 hover:text-primary-600 transition-colors"
       >
-        <span class="text-sm font-medium text-gray-900">Employment Type</span>
+        <span class="text-base font-semibold text-gray-900">Employment Type</span>
         <svg
-          class="h-5 w-5 text-gray-500 transition-transform duration-200"
+          class="h-5 w-5 text-gray-400 transition-transform duration-200"
           :class="{ 'rotate-180': expandedSections.employmentType }"
           fill="none"
           stroke="currentColor"
@@ -67,11 +72,11 @@
         </svg>
       </button>
 
-      <div v-show="expandedSections.employmentType" class="space-y-2 animate-fade-in">
+      <div v-show="expandedSections.employmentType" class="space-y-1.5 animate-fade-in pl-1">
         <label
           v-for="option in employmentOptions"
           :key="option.value"
-          class="flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors group"
+          class="flex items-center p-2.5 rounded-lg hover:bg-primary-50 cursor-pointer transition-all duration-150 group"
         >
           <input
             type="checkbox"
@@ -80,7 +85,7 @@
             @change="handleEmploymentChange"
             class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded cursor-pointer"
           />
-          <span class="ml-3 text-sm text-gray-700 group-hover:text-gray-900">{{ option.label }}</span>
+          <span class="ml-3 text-sm text-gray-700 group-hover:text-gray-900 font-medium">{{ option.label }}</span>
         </label>
       </div>
     </div>
@@ -91,11 +96,11 @@
     <div class="space-y-3">
       <button
         @click="toggleSection('remote')"
-        class="w-full flex items-center justify-between text-left"
+        class="w-full flex items-center justify-between text-left py-2 hover:text-primary-600 transition-colors"
       >
-        <span class="text-sm font-medium text-gray-900">Work Location</span>
+        <span class="text-base font-semibold text-gray-900">Work Location</span>
         <svg
-          class="h-5 w-5 text-gray-500 transition-transform duration-200"
+          class="h-5 w-5 text-gray-400 transition-transform duration-200"
           :class="{ 'rotate-180': expandedSections.remote }"
           fill="none"
           stroke="currentColor"
@@ -105,15 +110,15 @@
         </svg>
       </button>
 
-      <div v-show="expandedSections.remote" class="animate-fade-in">
-        <label class="flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors group">
+      <div v-show="expandedSections.remote" class="animate-fade-in pl-1">
+        <label class="flex items-center p-2.5 rounded-lg hover:bg-primary-50 cursor-pointer transition-all duration-150 group">
           <input
             type="checkbox"
             v-model="localRemoteOnly"
             @change="handleRemoteChange"
             class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded cursor-pointer"
           />
-          <span class="ml-3 text-sm text-gray-700 group-hover:text-gray-900">Remote Only</span>
+          <span class="ml-3 text-sm text-gray-700 group-hover:text-gray-900 font-medium">Remote Only</span>
         </label>
       </div>
     </div>

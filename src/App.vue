@@ -22,14 +22,14 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
       <!-- Hero Search Section -->
-      <section class="mb-8">
-        <div class="text-center mb-8">
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      <section class="mb-10 md:mb-12">
+        <div class="text-center mb-10 md:mb-12">
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 md:mb-6 leading-tight">
             Find Your Dream Job
           </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Discover thousands of opportunities from top companies worldwide
           </p>
         </div>
@@ -42,16 +42,16 @@
       </section>
 
       <!-- Mobile Filters Toggle -->
-      <div class="lg:hidden mb-4">
+      <div class="lg:hidden mb-6">
         <button
           @click="showMobileFilters = !showMobileFilters"
-          class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white rounded-xl shadow-sm border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+          class="w-full flex items-center justify-center gap-2.5 px-5 py-3.5 bg-white rounded-xl shadow-md border-2 border-gray-200 text-gray-800 font-semibold hover:bg-gray-50 hover:border-primary-300 transition-all"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
           </svg>
-          Filters
-          <span v-if="activeFiltersCount > 0" class="ml-2 px-2 py-0.5 bg-primary-600 text-white text-xs rounded-full">
+          <span class="text-base">Filters</span>
+          <span v-if="activeFiltersCount > 0" class="ml-1 px-2.5 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">
             {{ activeFiltersCount }}
           </span>
         </button>
@@ -105,21 +105,19 @@
       </transition>
 
       <!-- Results Section with Sidebar -->
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-[320px,1fr] gap-6 lg:gap-8 items-start">
         <!-- Desktop Filters Sidebar -->
         <aside class="hidden lg:block">
-          <div class="sticky top-24">
-            <Filters
-              v-model:date-posted="searchParams.datePosted"
-              v-model:employment-types="searchParams.employmentTypes"
-              v-model:remote-only="searchParams.remoteOnly"
-              @change="handleFilterChange"
-            />
-          </div>
+          <Filters
+            v-model:date-posted="searchParams.datePosted"
+            v-model:employment-types="searchParams.employmentTypes"
+            v-model:remote-only="searchParams.remoteOnly"
+            @change="handleFilterChange"
+          />
         </aside>
 
         <!-- Jobs List -->
-        <div class="lg:col-span-3">
+        <div class="min-w-0">
           <!-- Error State -->
           <div v-if="error" class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
             <svg class="w-12 h-12 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,7 +145,7 @@
           />
 
           <!-- Jobs Grid -->
-          <div v-else class="space-y-4">
+          <div v-else class="space-y-5">
             <JobCard
               v-for="job in jobs"
               :key="job.job_id"
@@ -155,11 +153,11 @@
             />
 
             <!-- Load More Button -->
-            <div v-if="hasMoreJobs" class="flex justify-center pt-6">
+            <div v-if="hasMoreJobs" class="flex justify-center pt-8">
               <button
                 @click="loadMore"
                 :disabled="loading"
-                class="px-8 py-3.5 bg-white border-2 border-primary-600 text-primary-600 font-semibold rounded-xl hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow"
+                class="px-10 py-4 bg-white border-2 border-primary-600 text-primary-600 font-bold rounded-xl hover:bg-primary-50 hover:border-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg text-base"
               >
                 {{ loading ? 'Loading...' : 'Load More Jobs' }}
               </button>
