@@ -70,6 +70,10 @@ Preview the production build:
 npm run preview
 ```
 
+## Deployment
+
+See **[DEPLOYMENT.md](DEPLOYMENT.md)** for Vercel setup, env vars, and rollback.
+
 ## Deployment to Vercel
 
 1. Install Vercel CLI:
